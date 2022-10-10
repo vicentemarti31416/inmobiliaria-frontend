@@ -1,0 +1,59 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2">
+      <form class="bg-light p-3 mt-5">
+        <div class="mt-3">
+          <label for="city">Ciudad</label>
+          <input id="city" name="city" [(ngModel)]="vivienda.city" class="form-control" type="text">
+        </div>
+        <div class="mt-3">
+          <label for="street">Calle</label>
+          <input id="street" name="street" [(ngModel)]="vivienda.street" class="form-control" type="text">
+        </div>
+        <div class="mt-3">
+          <label for="price">Precio</label>
+          <input id="price" name="price" [(ngModel)]="vivienda.price" class="form-control" type="text">
+        </div>
+        <div class="mt-3">
+          <label for="meters">Metros</label>
+          <input id="meters" name="meters" [(ngModel)]="vivienda.meters" class="form-control" type="number">
+        </div>
+        <div class="mt-3">
+          <label for="bedrooms">Habitaciones</label>
+          <input id="bedrooms" name="bedrooms" [(ngModel)]="vivienda.bedrooms" class="form-control" type="number">
+        </div>
+        <div class="mt-3">
+          <label for="restrooms">Aseos</label>
+          <input id="restrooms" name="restrooms" [(ngModel)]="vivienda.restrooms" class="form-control" type="number">
+        </div>
+        <div class="mt-4">
+          <button class="btn btn-outline-primary" type="button" (click)="limpiarFormulario()">Limpiar
+            formulario</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-sm-10 mt-5">
+      <div class="d-flex justify-content-evenly align-items-start flex-wrap">
+        <app-paginador *ngIf="paginador" class="w-100" [paginador]="paginador"></app-paginador>
+        <div *ngFor="let vivienda of viviendas" class="card mb-4" style="width: 18rem;">
+          <img 
+            *ngIf="vivienda.photoHashCode else elseBlock"  
+            [src]="'http://localhost:8080/viviendas/photo/' + vivienda.id + '?photoHashCode=' + vivienda.photoHashCode" 
+            style="height: 10rem;" class="card-img-top" alt="House picture">
+          <ng-template #elseBlock>
+            <img *ngIf="!vivienda.photoHashCode" [src]="'/assets/images/default.png'" style="height: 10rem;" class="card-img-top" alt="House picture">
+          </ng-template>
+          <div class="card-body">
+            <h5 class="card-title mb-2 text-primary">Precio: <span style="color: grey;">{{ vivienda.price }}€</span>
+            </h5>
+            <p class="card-text my-1 text-primary">Ciudad: <span style="color: grey;">{{ vivienda.city }}</span></p>
+            <p class="card-text my-1 text-primary">Calle: <span style="color: grey;">{{ vivienda.street }}</span></p>
+            <p class="card-text my-1 text-primary">Metros: <span style="color: grey;">{{ vivienda.meters }}</span></p>
+            <p class="card-text my-1 text-primary">Habitaciones: <span style="color: grey;">{{ vivienda.bedrooms}}</span></p>
+            <p class="card-text my-1 text-primary">Aseos: <span style="color: grey;">{{ vivienda.restrooms }}</span></p>
+            <a [routerLink]="['/detalle', vivienda.id]" class="btn btn-primary mt-2">Ver vivienda</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

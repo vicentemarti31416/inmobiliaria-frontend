@@ -1,0 +1,41 @@
+<div class="container mt-5">
+    <form novalidate>
+        <div class="mb-3">
+          <label for="precio" class="form-label">Precio</label>
+          <input name="price" type="precio" class="form-control" id="precio" [(ngModel)]="vivienda.price">
+          <!--<div *ngIf="form.get('price')?.touched && form.get('price').invalid" class="form-text text-danger">Debe indicar un precio</div>-->
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="ciudad">Ciudad</label>
+          <input id="ciudad" name="ciudad" type="text" class="form-control" [(ngModel)]="vivienda.city">
+          <!--<div *ngIf="form.get('city')?.touched && form.get('city').invalid" class="form-text text-danger">Debe indicar la ciudad</div>-->
+        </div>
+        <div class="mb-3">
+          <label for="calle" class="form-label">Calle</label>
+          <input type="text" id="calle" name="calle" class="form-control" [(ngModel)]="vivienda.street">
+        </div>
+        <div class="mb-3">
+          <label for="metros" class="form-label">Metros</label>
+          <input type="number" class="form-control" id="metros" name="metros" [(ngModel)]="vivienda.meters">
+          <!--<div *ngIf="form.get('meters')?.touched && form.get('meters')?.invalid" class="form-text text-danger">Debe indicar los metros cuadrados</div>-->
+        </div>
+        <div class="mb-3">
+          <label for="habitaciones" class="form-label">Habitaciones</label>
+          <input type="number" class="form-control" id="habitaciones" name="habitaciones" [(ngModel)]="vivienda.bedrooms">
+          <!--<div *ngIf="form.get('bedrooms')?.touched && form.get('bedrooms')?.invalid" class="form-text text-danger">Debe indicar el número de habitaciones</div>-->
+        </div>
+        <div class="mb-3">
+          <label for="aseos" class="form-label">Aseos</label>
+          <input type="number" class="form-control" id="aseos" name="aseos" [(ngModel)]="vivienda.restrooms">
+          <!--<div *ngIf="form.get('restrooms')?.touched && form.get('restrooms')?.invalid" class="form-text text-danger">Debe indicar el número de aseos</div>-->
+        </div>
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Default file input example</label>
+          <input (change)="seleccionarFoto($event)" class="form-control" type="file" id="formFile">
+        </div>
+        <button *ngIf="!vivienda.id else elseBlock" (click)="crearConFoto()" type="submit" class="btn btn-primary">Crear vivienda</button>
+        <ng-template #elseBlock>
+          <button (click)="editarConFoto()" type="submit" class="btn btn-primary">Actualizar vivienda</button>
+        </ng-template>
+    </form>
+</div>

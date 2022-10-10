@@ -1,0 +1,25 @@
+<div class="container mt-5">
+    <form (ngSubmit)="submit()" #form="ngForm"  class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label class="form-label" for="name">Nombre</label>
+            <input class="form-control" type="text" id="name" placeholder="Indica tu nombre" [(ngModel)]="cliente.name" name="name" #name="ngModel" required>
+            <div *ngIf="name.invalid && (name.touched || name.dirty)" class="mt-1 text-danger">Es obligatorio indicar el nombre</div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="phone">Teléfono</label>
+            <input class="form-control" type="text" id="phone" placeholder="Indique su teléfono" [(ngModel)]="cliente.phone" name="phone" #phone="ngModel" required>
+            <div *ngIf="phone.invalid && (phone.touched || phone.dirty)" class="mt-1 text-danger">Es obligatorio indicar el teléfono</div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="email">Email</label>
+            <input class="form-control" type="text" id="email" placeholder="Indica tu email" [(ngModel)]="cliente.email" name="email" #email="ngModel" required>
+            <div *ngIf="email.invalid && (email.touched || email.dirty)" class="mt-1 text-danger">Es obligatorio indicar el email</div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="message">Mensaje</label>
+            <textarea class="form-control" type="text" id="message" rows="5" placeholder="Indica el mensaje" [(ngModel)]="cliente.message" name="message" #message="ngModel" required></textarea>
+            <div *ngIf="message.invalid && (message.touched || message.dirty)" class="mt-1 text-danger">Es obligatorio añadir un mensaje</div>
+        </div>
+        <button [disabled]="!form.form.valid" class="btn btn-primary" type="submit">Enviar</button>
+    </form>
+</div>
