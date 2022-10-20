@@ -5,9 +5,9 @@
             <img 
             *ngIf="vivienda.photoHashCode else elseBlock"  
             [src]="'http://localhost:8080/viviendas/photo/' + vivienda.id + '?photoHashCode=' + vivienda.photoHashCode" 
-            style="height: 10rem;" class="card-img-top" alt="House picture">
+            style="height: 33rem;" class="card-img-top" alt="House picture">
           <ng-template #elseBlock>
-            <img *ngIf="!vivienda.photoHashCode" [src]="'/assets/images/default.png'" style="height: 28rem;" class="card-img-top" alt="House picture">
+            <img *ngIf="!vivienda.photoHashCode" [src]="'/assets/images/default.png'" style="height: 33rem;" class="card-img-top" alt="House picture">
           </ng-template>
             <div class="card-body">
               <h5 class="card-title mb-2 text-primary">Precio: <span style="color: grey;">{{ vivienda.price }}€</span></h5>

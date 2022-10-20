@@ -1,11 +1,15 @@
-<!--
-<div class="card border-secondary mt-3 container">
-    <div class="card-body">
-        <form>
-            <input type="text" [(ngModel)]="user.username" name="username" id="username" placeholder="username" autofocus required>
-            <input type="password" [(ngModel)]="usuario.password" name="password" id="password" placeholder="password" required>
-            <input type="submit" (click)='login()' placeholder="Login">
+<div class="container mt-5" style="height: 100vh;">
+    <div class="row justify-content-center">
+        <form class="col-sm-3">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" name="username" [(ngModel)]="user.username" class="form-control" id="username" placeholder="Username" autofocus>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" [(ngModel)]="user.password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <button type="submit" (click)="loguin()" class="btn btn-primary">Submit</button>
         </form>
     </div>
 </div>
--->
