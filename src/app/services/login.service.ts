@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { User } from '../models/user';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class LoginService {
   private _token: string;
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private router: Router
   ) { }
 
   login(user: User): Observable<any> {
@@ -28,6 +30,8 @@ export class LoginService {
     params.set('password', user.password);
     return this.httpClient.post<any>(urlEndpoint, params.toString(), { headers: httpHeaders }).pipe(
       catchError(e => {
+        user.username = '';
+        user.password = '';
         Swal.fire('No se ha podido iniciar sesión', 'Credenciales incorrectos', 'error');
         return throwError(() => "Credenciales incorrectos");
       })
@@ -75,6 +79,22 @@ export class LoginService {
       return this._token;
     }
     return null;
+  }
+
+  isAuthenticaded(): boolean {
+    if (this.token != null && this.token.length > 0 && sessionStorage.getItem('token') != null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  logout(): void {
+    this._token = null;
+    this._user = null;
+    sessionStorage.clear();
+    Swal.fire('Sesión cerrada correctamente', '', 'success');
+    this.router.navigate(['/']);
   }
 
 }

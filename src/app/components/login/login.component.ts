@@ -19,9 +19,13 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (this.loginService.isAuthenticaded()) {
+      Swal.fire('Error al acceder al login', 'Ya estás autenticado', 'info');
+      this.router.navigate(['/']);
+    }
   }
 
-  loguin(): void {
+  login(): void {
     if (this.user.username == (null || '') || this.user.password == (null || '')) {
       Swal.fire('Error de login', 'Los campos no pueden estar vacíos', 'error');
       return;
