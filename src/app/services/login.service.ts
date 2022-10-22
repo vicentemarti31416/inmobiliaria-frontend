@@ -97,4 +97,12 @@ export class LoginService {
     this.router.navigate(['/']);
   }
 
+  hasRole(role: string): boolean {
+    if (this.user.roles.includes(role)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 }

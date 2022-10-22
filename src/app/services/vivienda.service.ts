@@ -128,6 +128,9 @@ export class ViviendaService {
 
   private isNoAutorizado(e): boolean {
     if (e.status === 401) {
+      if (this.loginService.isAuthenticaded()) {
+        this.loginService.logout();
+      }
       Swal.fire('No autorizado', 'No estás autorizado para acceder a este recurso', 'warning');
       this.router.navigate(['/login']);
       return true;
