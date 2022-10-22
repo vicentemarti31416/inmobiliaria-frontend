@@ -15,8 +15,14 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
-    if (this.loginService.isAuthenticaded())
+    if (this.loginService.isAuthenticaded()) {
+      if (this.loginService.isExpirado()) {
+        this.loginService.logout();
+        this.router.navigate(['/login']);
+        return false;
+      }
       return true;
+    }
     else {
       this.router.navigate(['/login']);
       return false;
@@ -24,3 +30,4 @@ export class AuthGuard implements CanActivate {
   }
 
 }
+
