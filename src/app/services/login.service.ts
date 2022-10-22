@@ -105,4 +105,14 @@ export class LoginService {
     }
   }
 
+  isExpirado(): boolean {
+    let payload = this.obtenerDatosToken(this.token);
+    let timeNow = new Date().getTime() / 1000;
+    if (timeNow > payload.exp) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 }
